@@ -45,11 +45,14 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:
+        envFrom:
+          - secretRef:
+              name: {{ .Values.clearml.secretName }}
         - env:
-            - name: CLEARML_API_ACCESS_KEY
-              value: "{{ .Values.clearml.apiAccessKey }}"
-            - name: CLEARML_API_SECRET_KEY
-              value: "{{ .Values.clearml.apiSecretKey }}"
+            # - name: CLEARML_API_ACCESS_KEY
+            #   value: "{{ .Values.clearml.apiAccessKey }}"
+            # - name: CLEARML_API_SECRET_KEY
+            #   value: "{{ .Values.clearml.apiSecretKey }}"
             - name: CLEARML_API_HOST
               value: "{{ .Values.clearml.apiHost }}"
             - name: CLEARML_FILES_HOST
